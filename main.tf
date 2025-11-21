@@ -18,7 +18,7 @@ module "labels" {
 ##-----------------------------------------------------------------------------
 resource "aws_iam_role" "default" {
   count                 = var.enabled ? 1 : 0
-  name                  = format("%s-role", module.labels.id)
+  name                  = module.labels.id
   assume_role_policy    = coalesce(var.assume_role_policy, data.aws_iam_policy_document.default_assume_role[0].json)
   force_detach_policies = var.force_detach_policies
   path                  = var.path
